@@ -1,0 +1,12 @@
+D:\Proyectos_Personales\PruebaAgence\Solucion\AgenceTest\Agence.AccesoDatos\bin\Debug\Agence.AccesoDatos.dll.config
+D:\Proyectos_Personales\PruebaAgence\Solucion\AgenceTest\Agence.AccesoDatos\bin\Debug\Agence.AccesoDatos.dll
+D:\Proyectos_Personales\PruebaAgence\Solucion\AgenceTest\Agence.AccesoDatos\bin\Debug\Agence.AccesoDatos.pdb
+D:\Proyectos_Personales\PruebaAgence\Solucion\AgenceTest\Agence.AccesoDatos\bin\Debug\EntityFramework.dll
+D:\Proyectos_Personales\PruebaAgence\Solucion\AgenceTest\Agence.AccesoDatos\bin\Debug\EntityFramework.SqlServer.dll
+D:\Proyectos_Personales\PruebaAgence\Solucion\AgenceTest\Agence.AccesoDatos\bin\Debug\EntityFramework.xml
+D:\Proyectos_Personales\PruebaAgence\Solucion\AgenceTest\Agence.AccesoDatos\bin\Debug\EntityFramework.SqlServer.xml
+D:\Proyectos_Personales\PruebaAgence\Solucion\AgenceTest\Agence.AccesoDatos\obj\Debug\Agence.AccesoDatos.csproj.CoreCompileInputs.cache
+D:\Proyectos_Personales\PruebaAgence\Solucion\AgenceTest\Agence.AccesoDatos\obj\Debug\Agence.AccesoDatos.csproj.CopyComplete
+D:\Proyectos_Personales\PruebaAgence\Solucion\AgenceTest\Agence.AccesoDatos\obj\Debug\Agence.AccesoDatos.dll
+D:\Proyectos_Personales\PruebaAgence\Solucion\AgenceTest\Agence.AccesoDatos\obj\Debug\Agence.AccesoDatos.pdb
+D:\Proyectos_Personales\PruebaAgence\Solucion\AgenceTest\Agence.AccesoDatos\obj\Debug\Agence.AccesoDatos.csprojAssemblyReference.cache

@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A0C1F971-9FC6-4987-8D91-8C7305062274}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Agence.AccesoDatos</RootNamespace>
+    <AssemblyName>Agence.AccesoDatos</AssemblyName>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AgenceDBContext.cs" />
+    <Compile Include="Contratos\IFacturaRepositorio.cs" />
+    <Compile Include="Contratos\IOrdenServicioRepositorio.cs" />
+    <Compile Include="Contratos\IPermisosSistemaRepositorio.cs" />
+    <Compile Include="Contratos\IRepositorio.cs" />
+    <Compile Include="Contratos\ISalarioRepositorio.cs" />
+    <Compile Include="Contratos\IUnitOfWork.cs" />
+    <Compile Include="Contratos\IUsuarioRepositorio.cs" />
+    <Compile Include="Entidades\cao_acompanhamento_sistema.cs" />
+    <Compile Include="Entidades\cao_agendamento.cs" />
+    <Compile Include="Entidades\cao_arquitetura_os.cs" />
+    <Compile Include="Entidades\cao_atividade.cs" />
+    <Compile Include="Entidades\cao_atividade_consultor.cs" />
+    <Compile Include="Entidades\cao_atividade_report.cs" />
+    <Compile Include="Entidades\cao_atividade_teste.cs" />
+    <Compile Include="Entidades\cao_aviso.cs" />
+    <Compile Include="Entidades\cao_banco_de_horas.cs" />
+    <Compile Include="Entidades\cao_banco_horas.cs" />
+    <Compile Include="Entidades\cao_boleto.cs" />
+    <Compile Include="Entidades\cao_bonus.cs" />
+    <Compile Include="Entidades\cao_bonus_status.cs" />
+    <Compile Include="Entidades\cao_categorias_ombudsman.cs" />
+    <Compile Include="Entidades\cao_cidade.cs" />
+    <Compile Include="Entidades\cao_cliente.cs" />
+    <Compile Include="Entidades\cao_cliente_contato.cs" />
+    <Compile Include="Entidades\cao_comissao.cs" />
+    <Compile Include="Entidades\cao_complemento.cs" />
+    <Compile Include="Entidades\cao_conhecimentos.cs" />
+    <Compile Include="Entidades\cao_conhecimentos_fontes.cs" />
+    <Compile Include="Entidades\cao_conhecimento_usuario.cs" />
+    <Compile Include="Entidades\cao_custo.cs" />
+    <Compile Include="Entidades\cao_diary_report.cs" />
+    <Compile Include="Entidades\cao_diary_report_consultor.cs" />
+    <Compile Include="Entidades\cao_documentacao_casos_uso.cs" />
+    <Compile Include="Entidades\cao_documentacao_outros.cs" />
+    <Compile Include="Entidades\cao_documentacao_sistema.cs" />
+    <Compile Include="Entidades\cao_dr_ativ_comp.cs" />
+    <Compile Include="Entidades\cao_escala_ranking.cs" />
+    <Compile Include="Entidades\cao_escritorio.cs" />
+    <Compile Include="Entidades\cao_fatura.cs" />
+    <Compile Include="Entidades\cao_fatura_pag.cs" />
+    <Compile Include="Entidades\cao_formacao_idioma_usuario.cs" />
+    <Compile Include="Entidades\cao_formacao_usuario.cs" />
+    <Compile Include="Entidades\cao_help_autor.cs" />
+    <Compile Include="Entidades\cao_help_chamado.cs" />
+    <Compile Include="Entidades\cao_help_filial.cs" />
+    <Compile Include="Entidades\cao_help_motivo_chamado.cs" />
+    <Compile Include="Entidades\cao_help_status_chamado.cs" />
+    <Compile Include="Entidades\cao_help_tela_chamado.cs" />
+    <Compile Include="Entidades\cao_hist_ocorrencias_os.cs" />
+    <Compile Include="Entidades\cao_horario_almoco.cs" />
+    <Compile Include="Entidades\cao_log_chamado.cs" />
+    <Compile Include="Entidades\cao_menu.cs" />
+    <Compile Include="Entidades\cao_menu_contador.cs" />
+    <Compile Include="Entidades\cao_movimento.cs" />
+    <Compile Include="Entidades\cao_movimento_justificativa.cs" />
+    <Compile Include="Entidades\cao_movimento_os.cs" />
+    <Compile Include="Entidades\cao_noticia.cs" />
+    <Compile Include="Entidades\cao_obs_cliente.cs" />
+    <Compile Include="Entidades\cao_obs_sistema.cs" />
+    <Compile Include="Entidades\cao_ombudsman.cs" />
+    <Compile Include="Entidades\cao_os.cs" />
+    <Compile Include="Entidades\cao_os_analista.cs" />
+    <Compile Include="Entidades\cao_os_chamado.cs" />
+    <Compile Include="Entidades\cao_os_daily_report.cs" />
+    <Compile Include="Entidades\cao_os_email.cs" />
+    <Compile Include="Entidades\cao_os_fase.cs" />
+    <Compile Include="Entidades\cao_os_item_menu.cs" />
+    <Compile Include="Entidades\cao_os_obs.cs" />
+    <Compile Include="Entidades\cao_os_obs_chamado.cs" />
+    <Compile Include="Entidades\cao_os_prazo.cs" />
+    <Compile Include="Entidades\cao_os_status.cs" />
+    <Compile Include="Entidades\cao_pagamento.cs" />
+    <Compile Include="Entidades\cao_participacao_funcionario.cs" />
+    <Compile Include="Entidades\cao_permissao.cs" />
+    <Compile Include="Entidades\cao_permissao_hora_extra.cs" />
+    <Compile Include="Entidades\cao_pontos_conhecimento.cs" />
+    <Compile Include="Entidades\cao_ramo.cs" />
+    <Compile Include="Entidades\cao_rel_email_os.cs" />
+    <Compile Include="Entidades\cao_salario.cs" />
+    <Compile Include="Entidades\cao_salario_pag.cs" />
+    <Compile Include="Entidades\cao_servico.cs" />
+    <Compile Include="Entidades\cao_sistema.cs" />
+    <Compile Include="Entidades\cao_sistema_obs.cs" />
+    <Compile Include="Entidades\cao_status_agendamento.cs" />
+    <Compile Include="Entidades\cao_status_cliente.cs" />
+    <Compile Include="Entidades\cao_status_cliente_complemento.cs" />
+    <Compile Include="Entidades\cao_status_os.cs" />
+    <Compile Include="Entidades\cao_temp_import.cs" />
+    <Compile Include="Entidades\cao_tipo_conhecimento_usuario.cs" />
+    <Compile Include="Entidades\cao_tipo_custo.cs" />
+    <Compile Include="Entidades\cao_tipo_idioma_usuario.cs" />
+    <Compile Include="Entidades\cao_tipo_ombudsman.cs" />
+    <Compile Include="Entidades\cao_tipo_sistema_usuario.cs" />
+    <Compile Include="Entidades\cao_uf.cs" />
+    <Compile Include="Entidades\cao_usuario.cs" />
+    <Compile Include="Entidades\cao_usuario_dt_disp.cs" />
+    <Compile Include="Entidades\cao_valor_descanso.cs" />
+    <Compile Include="Entidades\permissao_sistema.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Entidades\tipo_usuario.cs" />
+    <Compile Include="Repositorio\FacturaRepositorio.cs" />
+    <Compile Include="Repositorio\OrdenServicioRepositorio.cs" />
+    <Compile Include="Repositorio\PermisosSistemaRepositorio.cs" />
+    <Compile Include="Repositorio\Repositorio.cs" />
+    <Compile Include="Repositorio\SalarioRepositorio.cs" />
+    <Compile Include="Repositorio\UsuarioRepositorio.cs" />
+    <Compile Include="UnitOfWork.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="BD\BD_Agence.bak" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+</Project>

@@ -1,0 +1,70 @@
+﻿@model Agence.Web.Models.PerformanceComercialResultViewModel
+
+@if (Model != null && Model.ListRelatorio != null && Model.ListRelatorio.Count > 0)
+{
+    string currencyFmt = System.Configuration.ConfigurationManager.AppSettings["CurrencyFormat"];
+    foreach (var relatorio in Model.ListRelatorio)
+    {
+        <br />
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">@relatorio.Consultor</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Período</th>
+                            <th>Receita Líquida</th>
+                            <th>Custo Fixo</th>
+                            <th>Comissão</th>
+                            <th>Lucro</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            double tgeneralReceitaLiquida = 0;
+                            double tgeneralCustoFixo = 0;
+                            double tgeneralComissao = 0;
+                            double tgeneralLucro = 0;
+                        }
+                        @foreach (var ganancia in relatorio.ListGanancia)
+                        {
+                            tgeneralReceitaLiquida = tgeneralReceitaLiquida + ganancia.ReceitaLiquida;
+                            tgeneralCustoFixo = tgeneralCustoFixo + ganancia.CustoFixo;
+                            tgeneralComissao = tgeneralComissao + ganancia.Comissao;
+                            tgeneralLucro = tgeneralLucro + ganancia.Lucro;
+                            <tr>
+                                <td>@ganancia.Periodo</td>
+                                <td>R$@String.Format(currencyFmt, ganancia.ReceitaLiquida)</td>
+                                <td>-R$@String.Format(currencyFmt, ganancia.CustoFixo)</td>
+                                <td>-R$@String.Format(currencyFmt, ganancia.Comissao)</td>
+                                <td>R$@String.Format(currencyFmt, ganancia.Lucro)</td>
+                            </tr>
+                        }
+                        <tr>
+                            <td><strong>Saldo</strong></td>
+                            <td><strong>R$@String.Format(currencyFmt, tgeneralReceitaLiquida)</strong></td>
+                            <td><strong>-R$@String.Format(currencyFmt, tgeneralCustoFixo)</strong></td>
+                            <td><strong>-R$@String.Format(currencyFmt, tgeneralComissao)</strong></td>
+                            <td><h6 class="m-0 font-weight-bold text-primary"><strong>R$@String.Format(currencyFmt, tgeneralLucro)</strong></h6></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <br />
+    <div class="alert alert-warning" style="text-align: center">
+        <button type="button" class="close" data-dismiss="alert">
+            ×
+        </button>
+        <strong>¡Importante!</strong> Não há registros para a pesquisa.
+    </div>
+    <br />
+}
+
+
