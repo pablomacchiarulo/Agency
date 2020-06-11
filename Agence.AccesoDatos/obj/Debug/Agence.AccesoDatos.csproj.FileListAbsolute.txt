@@ -9,4 +9,3 @@ D:\Proyectos_Personales\PruebaAgence\Solucion\AgenceTest\Agence.AccesoDatos\obj\
 D:\Proyectos_Personales\PruebaAgence\Solucion\AgenceTest\Agence.AccesoDatos\obj\Debug\Agence.AccesoDatos.csproj.CopyComplete
 D:\Proyectos_Personales\PruebaAgence\Solucion\AgenceTest\Agence.AccesoDatos\obj\Debug\Agence.AccesoDatos.dll
 D:\Proyectos_Personales\PruebaAgence\Solucion\AgenceTest\Agence.AccesoDatos\obj\Debug\Agence.AccesoDatos.pdb
-D:\Proyectos_Personales\PruebaAgence\Solucion\AgenceTest\Agence.AccesoDatos\obj\Debug\Agence.AccesoDatos.csprojAssemblyReference.cache

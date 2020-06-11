@@ -32,20 +32,20 @@ namespace Agence.Web.Controllers
 
         public ActionResult SearchData(PerformanceComercialViewModel fr)
         {
-            DateTime fechaInicial = Convert.ToDateTime("01-" + fr.MesDesde.ToString() + "-" + fr.AnoDesde.ToString());
-            DateTime fechaFinal = Convert.ToDateTime("01-" + fr.MesHasta.ToString() + "-" + fr.AnoHasta.ToString());
+            DateTime fechaInicial = Convert.ToDateTime(fr.MesDesde.ToString() + "-" + "01-" +  fr.AnoDesde.ToString(), CultureInfo.InvariantCulture);
+            DateTime fechaFinal = Convert.ToDateTime(fr.MesHasta.ToString() + "-" + "01-" + fr.AnoHasta.ToString(), CultureInfo.InvariantCulture);
             PerformanceComercialResultViewModel resultViewModel = new PerformanceComercialResultViewModel();
             if (fr.SelectedConsultorIds != null && fechaInicial <= fechaFinal)
             {              
                 resultViewModel.ListRelatorio = new List<RelatorioViewModel>();
+                int diferenciaMeses = Common.MonthDifference(fechaFinal, fechaInicial);
                 foreach (string consultor in fr.SelectedConsultorIds)
-                {
-                    int diferenciaMeses = Common.MonthDifference(fechaFinal, fechaInicial);
+                {              
                     RelatorioViewModel relatorioViewModel = new RelatorioViewModel();
                     relatorioViewModel.ListGanancia = new List<GananciaViewModel>();
                     relatorioViewModel.Consultor = _gananciaLogica.ObtenerNombreConsulto(consultor);
                     var i = 0;
-                    while (i < diferenciaMeses)
+                    while (i <= diferenciaMeses)
                     {
                         DateTimeFormatInfo mfi = new DateTimeFormatInfo();
                         string strMonthName = mfi.GetMonthName(fechaInicial.AddMonths(i).Month).ToString();
@@ -72,20 +72,19 @@ namespace Agence.Web.Controllers
         {
             List<PizzaViewModel> resultViewModel = new List<PizzaViewModel>();
 
-            DateTime fechaInicial = Convert.ToDateTime("01-" + fr.MesDesde.ToString() + "-" + fr.AnoDesde.ToString());
-            DateTime fechaFinal = Convert.ToDateTime("01-" + fr.MesHasta.ToString() + "-" + fr.AnoHasta.ToString());
+            DateTime fechaInicial = Convert.ToDateTime(fr.MesDesde.ToString() + "-" + "01-" + fr.AnoDesde.ToString(), CultureInfo.InvariantCulture);
+            DateTime fechaFinal = Convert.ToDateTime(fr.MesHasta.ToString() + "-" + "01-" + fr.AnoHasta.ToString(), CultureInfo.InvariantCulture);
             if (fr.SelectedConsultorIds != null && fechaInicial <= fechaFinal)
             {
+                int diferenciaMeses = Common.MonthDifference(fechaFinal, fechaInicial);
                 foreach (string consultor in fr.SelectedConsultorIds)
                 {
-
-                    int diferenciaMeses = Common.MonthDifference(fechaFinal, fechaInicial);
                     PizzaViewModel pizzaViewModel = new PizzaViewModel();
                     RelatorioViewModel relatorioViewModel = new RelatorioViewModel();
                     relatorioViewModel.ListGanancia = new List<GananciaViewModel>();
                     pizzaViewModel.Consultor = _gananciaLogica.ObtenerNombreConsulto(consultor);
                     var i = 0;
-                    while (i < diferenciaMeses)
+                    while (i <= diferenciaMeses)
                     {
                         DateTimeFormatInfo mfi = new DateTimeFormatInfo();
                         string strMonthName = mfi.GetMonthName(fechaInicial.AddMonths(i).Month).ToString();
@@ -107,37 +106,39 @@ namespace Agence.Web.Controllers
         }
 
         [HttpPost]
-        public JsonResult BarGrafico(PerformanceComercialViewModel fr)
+        public JsonResult ColumnGrafico(PerformanceComercialViewModel fr)
         {
             List<GraficoViewModel> resultViewModel = new List<GraficoViewModel>();
-            DateTime fechaInicial = Convert.ToDateTime("01-" + fr.MesDesde.ToString() + "-" + fr.AnoDesde.ToString());
-            DateTime fechaFinal = Convert.ToDateTime("01-" + fr.MesHasta.ToString() + "-" + fr.AnoHasta.ToString());
+            DateTime fechaInicial = Convert.ToDateTime(fr.MesDesde.ToString() + "-" + "01-" + fr.AnoDesde.ToString(), CultureInfo.InvariantCulture);
+            DateTime fechaFinal = Convert.ToDateTime(fr.MesHasta.ToString() + "-" + "01-" + fr.AnoHasta.ToString(), CultureInfo.InvariantCulture);
+            int diferenciaMeses = Common.MonthDifference(fechaFinal, fechaInicial);
             if (fr.SelectedConsultorIds != null && fechaInicial <= fechaFinal)
             {
-                foreach (string consultor in fr.SelectedConsultorIds)
+                var i = 0;
+                while (i <= diferenciaMeses)
                 {
-
-
-                    int diferenciaMeses = Common.MonthDifference(fechaFinal, fechaInicial);
-
-                    RelatorioViewModel relatorioViewModel = new RelatorioViewModel();
-                    var consultorName = _gananciaLogica.ObtenerNombreConsulto(consultor);
-                    var i = 0;
-                    while (i < diferenciaMeses)
+                    GraficoViewModel graficoViewModel = new GraficoViewModel();
+                    DateTimeFormatInfo mfi = new DateTimeFormatInfo();
+                    string strMonthName = mfi.GetMonthName(fechaInicial.AddMonths(i).Month).ToString();
+                    string periodo = strMonthName + " del " + fechaInicial.AddMonths(i).Year.ToString();
+                    graficoViewModel.ListColumn = new List<ColumnChartViewModel>();
+                    graficoViewModel.Consultores = new List<string>();
+                    graficoViewModel.Periodo = periodo;
+                    double totalReceitaLiquita = 0;
+                    foreach (string consultor in fr.SelectedConsultorIds)
                     {
-                        GraficoViewModel graficoViewModel = new GraficoViewModel();
-                        DateTimeFormatInfo mfi = new DateTimeFormatInfo();
-                        string strMonthName = mfi.GetMonthName(fechaInicial.AddMonths(i).Month).ToString();
-                        GananciaViewModel gananciaViewModel = new GananciaViewModel();
-                        graficoViewModel.Consultor = consultorName;
-                        graficoViewModel.Periodo = strMonthName + " del " + fechaInicial.AddMonths(i).Year.ToString();
-                        graficoViewModel.ReceitaLiquida = _gananciaLogica.CalcularReceitaLiquidaPorMes(fechaInicial.AddMonths(i), consultor);
-                        if (graficoViewModel.ReceitaLiquida != 0)
-                            resultViewModel.Add(graficoViewModel);
-
-                        i++;
+                        var consultorName = _gananciaLogica.ObtenerNombreConsulto(consultor);                      
+                        ColumnChartViewModel gananciaViewModel = new ColumnChartViewModel();                       
+                        gananciaViewModel.Consultor = consultorName;
+                        graficoViewModel.Consultores.Add(consultorName);
+                        gananciaViewModel.ReceitaLiquida = _gananciaLogica.CalcularReceitaLiquidaPorMes(fechaInicial.AddMonths(i), consultor);
+                        totalReceitaLiquita = totalReceitaLiquita + gananciaViewModel.ReceitaLiquida;
+                        graficoViewModel.ListColumn.Add(gananciaViewModel);                    
                     }
-                }
+                    i++;
+                    if(totalReceitaLiquita != 0)
+                        resultViewModel.Add(graficoViewModel);
+                }            
             }
             return Json(resultViewModel, JsonRequestBehavior.AllowGet);
         }

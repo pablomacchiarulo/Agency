@@ -41,7 +41,7 @@
             $('#barchart_div_disable').show();
             $('#piechart_div_disable').hide();
             $('#relatorio_div_disable').hide();
-            var url = '@Url.Action("BarGrafico", "PerformanceComercial")';
+            var url = '@Url.Action("ColumnGrafico", "PerformanceComercial")';
             $.post(url, $("#RelatorioForm").serialize(), function (data, status) {
                 google.charts.load("current", { packages: ["corechart"] });
                 google.charts.setOnLoadCallback(function () {
@@ -71,17 +71,30 @@
         }
 
         function barChart(result) {
-            var data = new google.visualization.DataTable();
-            data.addColumn('string', 'Periodo');   
-            data.addColumn('number', 'ReceitaLiquida');  
-            var dataArray = [];
-            $.each(result, function (i, obj) {
-                dataArray.push([obj.Periodo, obj.ReceitaLiquida]);
-            });
-            data.addRows(dataArray);
+            debugger;
+            var data = new google.visualization.DataTable();         
+            data.addColumn('string', 'Periodo');
 
+            $.each(result, function (i, obj) {
+                if (i == 0) {
+                    $.each(obj.Consultores, function (j, obj1) {
+                        data.addColumn('number', obj1);
+                    });
+                }
+            });
+
+            $.each(result, function (i, obj) {
+                var dataArray = [];
+                dataArray.push(obj.Periodo);
+                $.each(obj.ListColumn, function (j, obj1) {
+                    dataArray.push(obj1.ReceitaLiquida);
+                });
+                data.addRows([dataArray]);
+            });
+            debugger;
             var piechart_options = {
                 title: 'Grafíco',
+                height: 400,
                 is3D: true,
             };
             $('#barchart_div_disable').show();
